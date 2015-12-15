@@ -1,6 +1,10 @@
 require 'rails_helper'
 
 describe OfficeWorker do
+  context 'associations' do
+    it { is_expected.to have_one :info }
+  end
+
   describe '#ensure_valid_age?' do
     let(:office_worker) { build(:office_worker) }
 
