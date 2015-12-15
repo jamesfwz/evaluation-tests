@@ -1,6 +1,10 @@
 require 'rails_helper'
 
 describe Student do
+  context 'associations' do
+    it { is_expected.to have_and_belong_to_many :schools }
+  end
+
   describe '#ensure_valid_age?' do
     let(:student) { build(:student) }
 
