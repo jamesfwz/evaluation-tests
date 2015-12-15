@@ -9,9 +9,9 @@ class User < ActiveRecord::Base
     ((Date.today - dob) / 365).floor
   end
 
-  private
+  protected
 
   def ensure_valid_age
-    return errors[:dob] << 'Invalid.' if dob? && age < MIN_AGE
+    return errors[:dob] << 'Invalid.' if dob? && age < self.class::MIN_AGE
   end
 end

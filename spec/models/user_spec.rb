@@ -22,7 +22,7 @@ describe User do
       ['06/04/2500', '06/10/2025'].each do |dob|
         it "#{dob}" do
           user.dob = dob
-          expect(user.valid?).to eq false
+          expect(user).to_not be_valid
         end
       end
     end
