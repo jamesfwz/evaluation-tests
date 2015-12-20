@@ -1,6 +1,10 @@
 require 'rails_helper'
 
 describe User do
+  before(:each) do
+    allow(Date).to receive(:today).and_return('15/12/2015'.to_date)
+  end
+
   context 'validations' do
     it { is_expected.to validate_presence_of :name }
     it { is_expected.to validate_presence_of :dob }
