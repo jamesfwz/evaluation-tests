@@ -1,8 +1,9 @@
-class CreatePersons < ActiveRecord::Migration
+class CreatePeople < ActiveRecord::Migration
   def change
-    create_table :persons do |t|
+    create_table :people do |t|
       t.string :first_name
       t.string :last_name
+      t.string :name
       t.date :dob 
       t.string :gender
     end
