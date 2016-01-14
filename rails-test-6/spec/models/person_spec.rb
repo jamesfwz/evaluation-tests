@@ -16,4 +16,26 @@ describe Person do
       expect(person.name).to eq 'James La'
     end
   end
+
+  describe '#ensure_valid_age' do
+    let(:person) { build(:person) }
+
+    context 'valid' do
+      [1.year.ago, 18.years.ago].each do |dob|
+        it "#{dob}" do
+          person.dob = dob
+          expect(person).to be_valid
+        end
+      end
+    end
+
+    context 'invalid' do
+      [1.year.from_now, 18.years.from_now].each do |dob|
+        it "#{dob}" do
+          person.dob = dob
+          expect(person).to_not be_valid
+        end
+      end
+    end
+  end
 end
