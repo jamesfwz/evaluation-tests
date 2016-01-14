@@ -1,0 +1,18 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+
+development:
+  <<: *default
+  database: rails-test-6_development
+
+test:
+  <<: *default
+  database: rails-test-6_test
+
+production:
+  <<: *default
+  database: rails-test-6_production
+  username: rails-test-6
+  password: <%= ENV['RAILS-TEST-6_DATABASE_PASSWORD'] %>
