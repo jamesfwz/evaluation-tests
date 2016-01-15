@@ -37,13 +37,19 @@ describe Person do
       end
     end
 
-    describe '#sons' do 
+    describe '#children, #sons' do 
       let!(:peter)               { create(:male,   first_name: 'Peter') }
       let!(:anna)                { create(:female, first_name: 'Anna') }
 
       before do 
         create(:father_relationship, person: peter, member: alex)
         create(:father_relationship, person: anna,  member: alex)
+      end
+
+      it 'returns children' do 
+        expect(alex.children).to include peter.becomes(Child)
+        expect(alex.children).to include peter.becomes(Child)
+        expect(alex.children.size).to eq 2
       end
       
       it 'returns sons' do 
