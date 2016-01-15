@@ -1,3 +1,3 @@
-class Father < Person
+class Brother < Person
   include Person::Male
 end

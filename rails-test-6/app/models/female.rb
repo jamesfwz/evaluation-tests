@@ -1,3 +1,3 @@
-class Mother < Person
+class Female < Person
   include Person::Female
 end

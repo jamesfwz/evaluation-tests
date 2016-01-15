@@ -16,13 +16,40 @@ describe Person do
     it { is_expected.to have_many :children }
   end
 
-  describe '#father' do 
+  describe 'relationships' do 
     let!(:alex)       { create(:person,   first_name: 'Alex') }
-    let!(:mason)      { create(:person,   first_name: 'Mason') }
-    let!(:father_relationship) { create(:father_relationship, person: alex, member: mason) }
 
-    it 'returns father' do 
-      expect(alex.father).to match mason.becomes(Father)
+    describe '#father' do 
+      let!(:mason)      { create(:male,     first_name: 'Mason') }
+      let!(:father_relationship) { create(:father_relationship, person: alex, member: mason) }
+
+      it 'returns father' do 
+        expect(alex.father).to match mason.becomes(Father)
+      end
+    end
+
+    describe '#mother' do 
+      let!(:ava)        { create(:female,   first_name: 'Ava') }
+      let!(:mother_relationship) { create(:mother_relationship, person: alex, member: ava) }
+      
+      it 'returns mother' do 
+        expect(alex.mother).to match ava.becomes(Mother)
+      end
+    end
+
+    describe '#sons' do 
+      let!(:peter)               { create(:male,   first_name: 'Peter') }
+      let!(:anna)                { create(:female, first_name: 'Anna') }
+
+      before do 
+        create(:father_relationship, person: peter, member: alex)
+        create(:father_relationship, person: anna,  member: alex)
+      end
+      
+      it 'returns sons' do 
+        expect(alex.sons).to include peter.becomes(Son)
+        expect(alex.sons.size).to eq 1
+      end
     end
   end
 

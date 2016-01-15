@@ -7,4 +7,8 @@ FactoryGirl.define do
   factory :father_relationship, parent: :relationship  do 
     member_type 'Father'
   end
+
+  factory :mother_relationship, parent: :relationship  do 
+    member_type 'Mother'
+  end
 end
