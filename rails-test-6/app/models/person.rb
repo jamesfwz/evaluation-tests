@@ -7,8 +7,9 @@ class Person < ActiveRecord::Base
   has_one :mother, -> { where(relationships: { member_type: Mother }) }, class_name: Mother, through: :relationship, source: :member
 
   has_many :children_relationships, -> { where(member_type: [Father, Mother]) }, class_name: Relationship, foreign_key: :member_id
-  has_many :children, class_name: Child,  source: :person, through: :children_relationships
-  has_many :sons,     class_name: Son,    source: :person, through: :children_relationships
+  has_many :children,   class_name: Child,    source: :person, through: :children_relationships
+  has_many :sons,       class_name: Son,      source: :person, through: :children_relationships
+  has_many :daughters,  class_name: Daughter, source: :person, through: :children_relationships
 
   validates :first_name, presence: true
   validates :last_name,  presence: true
