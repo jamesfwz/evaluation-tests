@@ -10,8 +10,9 @@ describe Person do
   end
 
   context 'associations' do
-    it { is_expected.to have_one :father_relationship }
+    it { is_expected.to have_one :relationship }
     it { is_expected.to have_one :father }
+    it { is_expected.to have_one :mother }
   end
 
   describe '#set_name' do 
