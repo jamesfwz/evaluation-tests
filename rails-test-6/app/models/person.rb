@@ -25,6 +25,11 @@ class Person < ActiveRecord::Base
     ((Date.today - dob) / 365).floor
   end
 
+  def father_of?(person)
+    return false if !father
+    father.id == person.id 
+  end
+
   private
 
   def set_name

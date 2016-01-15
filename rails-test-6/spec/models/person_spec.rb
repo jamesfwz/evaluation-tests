@@ -63,6 +63,20 @@ describe Person do
     end
   end
 
+  describe '#father_of?' do 
+    let!(:alex)   { create(:person, first_name: 'Alex') }
+    let!(:mason)  { create(:male,   first_name: 'Mason') }
+    let!(:father_relationship) { create(:father_relationship, person: alex, member: mason) }
+
+    it 'true' do 
+      expect(alex.father_of?(mason)).to be true
+    end
+
+    it 'false' do 
+      expect(mason.father_of?(alex)).to be false
+    end
+  end
+
   describe '#set_name' do 
     let!(:person) { create(:person, first_name: "James", last_name: "La") }
 
