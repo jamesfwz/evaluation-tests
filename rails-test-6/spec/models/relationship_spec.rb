@@ -4,8 +4,8 @@ describe Relationship do
   context 'validations' do
     it { is_expected.to validate_presence_of :person_id }
     it { is_expected.to validate_presence_of :member_id }
-    it { is_expected.to validate_presence_of :type }
-    it { is_expected.to enumerize(:type).in(:Father, :Mother) }
+    it { is_expected.to validate_presence_of :member_type }
+    it { is_expected.to enumerize(:member_type).in(:Father, :Mother) }
   end
 
   context 'associations' do

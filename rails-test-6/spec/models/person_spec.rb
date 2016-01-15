@@ -9,6 +9,11 @@ describe Person do
     it { is_expected.to enumerize(:gender).in(:male, :female) }
   end
 
+  context 'associations' do
+    it { is_expected.to have_one :father_relationship }
+    it { is_expected.to have_one :father }
+  end
+
   describe '#set_name' do 
     let!(:person) { create(:person, first_name: "James", last_name: "La") }
 

@@ -1,0 +1,1 @@
+class Father < Person; end

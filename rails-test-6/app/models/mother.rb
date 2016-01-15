@@ -1,0 +1,1 @@
+class Mother < Person; end
