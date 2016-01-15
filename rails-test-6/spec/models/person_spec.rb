@@ -16,6 +16,16 @@ describe Person do
     it { is_expected.to have_many :children }
   end
 
+  describe '#father' do 
+    let!(:alex)       { create(:person,   first_name: 'Alex') }
+    let!(:mason)      { create(:person,   first_name: 'Mason') }
+    let!(:father_relationship) { create(:father_relationship, person: alex, member: mason) }
+
+    it 'returns father' do 
+      expect(alex.father).to match mason.becomes(Father)
+    end
+  end
+
   describe '#set_name' do 
     let!(:person) { create(:person, first_name: "James", last_name: "La") }
 
