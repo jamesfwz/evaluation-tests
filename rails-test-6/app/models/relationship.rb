@@ -9,9 +9,9 @@ class Relationship < ActiveRecord::Base
   belongs_to :person 
   belongs_to :member, class_name: Person
 
+  validates :person_id,     uniqueness: { scope: :member_type }, if: Proc.new { |relationship| ['Father', 'Mother'].include?(relationship.member_type) }
   validates :person_id,     presence: true
   validates :member_id,     presence: true
-  validates :person_id,     uniqueness: { scope: :member_type }, if: Proc.new { |relationship| ['Father', 'Mother'].include?(relationship.member_type) }
   validates :member_type,   presence: true
   
   validate :ensure_valid_age
