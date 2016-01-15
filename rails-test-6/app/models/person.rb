@@ -6,6 +6,8 @@ class Person < ActiveRecord::Base
   has_one :father, -> { where(relationships: { member_type: Father }) }, class_name: Father, through: :relationship, source: :member
   has_one :mother, -> { where(relationships: { member_type: Mother }) }, class_name: Mother, through: :relationship, source: :member
 
+  has_many :children, -> (parent) { where(relationships: { member_type: [Father, Mother], member_id: parent }) }, class_name: Child, source: :person, through: :relationship
+
   validates :first_name, presence: true
   validates :last_name,  presence: true
   validates :dob,        presence: true
