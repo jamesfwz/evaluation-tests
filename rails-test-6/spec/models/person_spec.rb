@@ -19,10 +19,10 @@ describe Person do
   end
 
   describe 'relationships' do 
-    let!(:alex)       { create(:person,   first_name: 'Alex') }
+    let!(:alex) { create(:person, first_name: 'Alex') }
 
     describe '#father' do 
-      let!(:mason)      { create(:male,     first_name: 'Mason') }
+      let!(:mason)               { create(:male, first_name: 'Mason') }
       let!(:father_relationship) { create(:father_relationship, person: alex, member: mason) }
 
       it 'returns father' do 
@@ -31,7 +31,7 @@ describe Person do
     end
 
     describe '#mother' do 
-      let!(:ava)        { create(:female,   first_name: 'Ava') }
+      let!(:ava)                 { create(:female,   first_name: 'Ava') }
       let!(:mother_relationship) { create(:mother_relationship, person: alex, member: ava) }
       
       it 'returns mother' do 
@@ -82,6 +82,15 @@ describe Person do
 
     it 'false' do 
       expect(mason.father_of?(alex)).to be false
+    end
+  end
+
+  describe '#older_than' do 
+    let!(:alex)   { create(:person, first_name: 'Alex', dob: 18.years.ago) }
+    let!(:mason)  { create(:person, first_name: 'Mason', dob: 40.years.ago) }
+
+    it 'returns number of years' do 
+      expect(mason.older_than(alex)).to eq 22
     end
   end
 

@@ -27,6 +27,10 @@ class Person < ActiveRecord::Base
     ((Date.today - dob) / 365).floor
   end
 
+  def older_than(person)
+    age - person.age
+  end
+
   def father_of?(person)
     return false if !father
     father.id == person.id 
