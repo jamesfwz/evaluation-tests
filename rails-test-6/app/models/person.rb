@@ -30,6 +30,10 @@ class Person < ActiveRecord::Base
     father.id == person.id 
   end
 
+  def say_something
+    "Hello, my full name is #{name}."
+  end
+
   private
 
   def set_name
