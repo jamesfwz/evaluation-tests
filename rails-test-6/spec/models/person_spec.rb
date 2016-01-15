@@ -14,6 +14,8 @@ describe Person do
     it { is_expected.to have_one :father }
     it { is_expected.to have_one :mother }
     it { is_expected.to have_many :children }
+    it { is_expected.to have_many :parents }
+    it { is_expected.to have_many :brothers }
   end
 
   describe 'relationships' do 
@@ -37,7 +39,7 @@ describe Person do
       end
     end
 
-    describe '#children, #sons' do 
+    describe '#children, #sons, #brothers' do 
       let!(:peter)  { create(:male,   first_name: 'Peter') }
       let!(:anna)   { create(:female, first_name: 'Anna') }
 
@@ -59,6 +61,12 @@ describe Person do
       it 'returns daughters' do 
         expect(alex.daughters).to include anna.becomes(Daughter)
         expect(alex.daughters.size).to eq 1
+      end
+
+      it 'returns brothers' do 
+        expect(anna.brothers).to include peter.becomes(Brother)
+        expect(anna.brothers.size).to eq 1
+        expect(peter.brothers.size).to eq 0
       end
     end
   end

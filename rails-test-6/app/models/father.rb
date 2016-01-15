@@ -1,4 +1,4 @@
-class Father < Person
+class Father < Parent
   include Person::Male
 
   def say_something
