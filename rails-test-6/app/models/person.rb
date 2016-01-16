@@ -2,7 +2,7 @@ class Person < ActiveRecord::Base
   extend Enumerize
   MIN_AGE = 0
 
-  has_one :relationship
+  has_one :relationship, dependent: :destroy
   has_one :father, -> { where(relationships: { member_type: Father }) }, class_name: Father, through: :relationship, source: :member
   has_one :mother, -> { where(relationships: { member_type: Mother }) }, class_name: Mother, through: :relationship, source: :member
 
