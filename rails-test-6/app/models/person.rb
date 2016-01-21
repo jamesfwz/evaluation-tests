@@ -11,7 +11,7 @@ class Person < ActiveRecord::Base
   has_many :children,   class_name: Child,    source: :person, through: :children_relationships
   has_many :sons,       class_name: Son,      source: :person, through: :children_relationships
   has_many :daughters,  class_name: Daughter, source: :person, through: :children_relationships
-  has_many :brothers, -> (object) { where.not(id: object.id) }, class_name: Brother, source: :sons, through: :parents
+  has_many :brothers, -> (object) { where.not(id: object.id).uniq }, class_name: Brother, source: :sons, through: :parents
 
   validates :first_name, presence: true
   validates :last_name,  presence: true
